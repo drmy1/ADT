@@ -80,7 +80,8 @@ in_the_streets(941)->shop_gate(0)->vege_queue(0)->final_cr(2)->done(57)
 def take_snapshot(self):
 ```
 
-11. Zařiďte, aby se metoda _take_snapshot()_ zavolala každou minutu simulovaného času.
+11. Zařiďte, aby se metoda _take_snapshot()_ zavolala každou minutu simul
+12. ovaného času.
 
 
 # Závěrem
