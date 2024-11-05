@@ -1,0 +1,101 @@
+1. Jaká bude algoritmická složitost vložení prvku do seřazeného seznamu tak, aby byl seznam i po vložení prvku stále seřazený? Nepoužijeme spojovou strukturu a tak budeme muset pro vložení prvku všechny prvky od místa vložení posunout. 
+Question 1
+Answer
+
+a. Θ(n2)Θ(�2)
+b. Θ(n)Θ(�)
+c. Θ(nlog(n))Θ(�log⁡(�))
+d. Θ(log(n))
+
+Your answer is correct.
+The correct answer is:
+Θ(n)
+------------------------------------------------------------------------------------------------------------------------------------
+####################################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------
+2. Při vývoji webového prohlížeče potřebujete implementovat funkci pro správu historie procházení, kde uživatelé mohou snadno postupně vrátit zpět na předchozí stránky, na které se dívali. Která datová struktura je pro tuto úlohu nejvhodnější?
+Question 1
+Answer
+
+a. Fronta, protože umožňuje přidávání prvků na konec a odebírání z počátku.
+b. Zásobník, protože umožňuje přidávání a odebírání prvků pouze z vrcholu.
+c. Fronta, ovšem musíme zvolit implementaci spojovým seznamem.
+d. Seznam, protože umožňuje vkládání a mazání prvků na libovolné pozici.
+
+The correct answer is: Zásobník, protože umožňuje přidávání a odebírání prvků pouze z vrcholu.
+------------------------------------------------------------------------------------------------------------------------------------
+####################################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------
+3. Mějme seznam A = [1, 2, 3, 4]. Pokud nejprve vložíme jeho prvky do zásobníku a následně tyto prvky přesuneme do fronty, v jakém pořadí budeme prvky získávat při jejich postupném odebírání z fronty?
+Question 1
+Answer
+
+a. Takto nelze ADT Zásobní a ADT Fronta řetězit.
+b. [1, 2, 3, 4] - Prvky jsou odebrány ve stejném pořadí, jak byly vloženy do seznamu.
+c. [4, 1, 3, 2] - Prvky jsou odebrány v náhodném pořadí.
+d. [4, 3, 2, 1] - Prvky jsou odebrány v obráceném pořadí oproti jejich vložení do seznamu.
+------------------------------------------------------------------------------------------------------------------------------------
+####################################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------
+4. Představme si situaci ve školním prostředí, kde učitelé z různých předmětů chtějí organizovat tematické týdny zaměřené na interdisciplinární projekty. Každý tematický týden má svou specifickou náplň, jako je "Věda a technologie", "Umění a kultura", "Sport a zdraví" atd. Studenti se mohou přihlásit do projektů podle svých zájmů, přičemž každý student může být součástí projektů ve více tematických týdnech. Na konci školního roku je potřeba zorganizovat slavnostní prezentaci projektů, přičemž učitelé chtějí zajistit, že budou prezentovány projekty z každého tematického týdne s co nejširším zastoupením studentů.
+Otázka: Jaký abstraktní datový typ (ADT) by byl optimální pro identifikaci studentů, kteří se přihlásili do projektů napříč různými tematickými týdny s cílem zajistit reprezentaci všech témat ve finální prezentaci a zároveň identifikovat studenty, kteří se zapojili do projektů ve více než jednom tematickém týdnu?
+
+Question 1
+Answer
+
+a. ADT Zásobník
+b. ADT Fronta
+c. ADT Množina
+d. ADT Seznam
+------------------------------------------------------------------------------------------------------------------------------------
+####################################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------
+5. Označte pravdivá tvrzení pro amortizovanou složitost přidávání prvků do dynamického pole.
+
+Question 1
+Answer
+
+a. Amortizovaná složitost přidání prvku do pole je Θ(1).
+b. Přidání některých prvků do pole o velikosti n bude trvat o hodně déle než přidání ostatních prvků.
+c. Přidání každého prvku do pole o velikosti n bude trvat stejně dlouho.
+d. Pro většinu velikostí n je amortizovaná složitost přidání prvku do pole Θ(1), ale pro některé hodnoty n to může být až Θ(n).
+
+Your answer is correct.
+The correct answers are: Přidání některých prvků do pole o velikosti n bude trvat o hodně déle než přidání ostatních prvků., Amortizovaná složitost přidání prvku do pole je Θ(1).
+------------------------------------------------------------------------------------------------------------------------------------
+####################################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------
+6. Je následující implementace rozptylové funkce vhodná pro použití v rozptylových tabulkách?
+
+class User:
+  def __init__(self, name, email):
+      self.name = name
+      self.email = email
+
+   def __hash__(self):
+      return len(self.name)
+Question 1
+Answer
+
+True
+False
+
+(asi odpověď k tomuto, ale nejsem si jjistý)
+The correct answer is 'False'.
+------------------------------------------------------------------------------------------------------------------------------------
+####################################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------
+7. Jaká je složitost nejhoršího případu algoritmů procházení do hloubky a do šířky ADT strom?
+n je počet vrcholů stromu.
+Úloha 1Odpověď
+
+a. Θ(n2) pro oba algoritmy.
+
+
+b. Θ(n) pro algoritmus procházení do šířky a Θ(n2) pro algoritmus procházení do hloubky.
+
+
+c. Θ(n) pro algoritmus procházení do hloubky a Θ(n2) pro algoritmus procházení do šířky.
+
+
+d. Θ(n) pro oba algoritmy.

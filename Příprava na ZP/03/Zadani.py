@@ -1,4 +1,3 @@
-
 """
 Zadání:
     - Zastupitelstvo města České Budějovice získalo dotaci na podporu turistiky a rádo by zřídilo speciální
@@ -17,7 +16,7 @@ Dodaná data obsahují neorientovaný graf českých železničních koridorů. 
       - source a target jsou identifikátory železničních uzlů, které spojuje,
       - clength je ohodnocení (délka) hrany v metrech,
       - ostatní pole pro tento úkol nejsou důležitá.
-  - soubor nodes.csv obsahuje informaci o vlakových zastávkách. Každý řádek souboru obsahuje informaci o jedné zastávce. Pokud neexistuje pro některý z bodů 
+  - soubor nodes.csv obsahuje informaci o vlakových zastávkách. Každý řádek souboru obsahuje informaci o jedné zastávce. Pokud neexistuje pro některý z bodů
   ze souboru edges záznam v nodes, jedná se o průjezdní bod. Vlak zde nezastavuje.
       - id je identifikátor vrcholu,
       - sname je název stanice.
@@ -45,7 +44,9 @@ class Vertex:
 
     def __init__(self, id: int) -> None:
         self.id: int = id  # identifikátor uzlu
-        self.edges: list[tuple[float, Vertex]] = list()  # (váha hrany, (kam_se_dostanu))
+        self.edges: list[tuple[float, Vertex]] = (
+            list()
+        )  # (váha hrany, (kam_se_dostanu))
 
 
 class UndirectedGraph:
@@ -57,15 +58,15 @@ class UndirectedGraph:
     """
 
     def __init__(self) -> None:
-        self.nodes: dict[int, Vertex] = None
+        self.nodes: dict[int, Vertex] = dict()
 
     def __add_node(self, node: Vertex):
         """Metoda přidá node do grafu.
         Args:
             node (Vertex): uzel, který se má přidat do grafu
         """
-        # TODO Implementujte metodu dle specifikace
-        pass
+        # // TODO Implementujte metodu dle specifikace
+        self.nodes[node.id] = node
 
     def __add_edge(self, src: Vertex, dst: Vertex, weight: float = 0):
         """Metoda přidá hranu mezi dva uzly v grafu. Hrana je neorientovaná.
@@ -74,8 +75,14 @@ class UndirectedGraph:
             dst (Vertex): Uzel, do kterého hrana vede
             weight (float, optional): Ohodnocení hrany. Defaults to 0.
         """
-        # TODO Implementujte metodu dle specifikace
-        pass
+        # // TODO Implementujte metodu dle specifikace
+        src.edges.append((weight, dst))
+        dst.edges.append((weight, src))
+
+    def create_node(self, id: int) -> Vertex:
+        n = Vertex(id)
+        self.__add_node(n)
+        return n
 
     def create_edge(self, src_id: int, dst_id: int, weight: float = 0):
         """Metoda přidá hranu do grafu. Vstupují identifikátory uzlů. Pokud uzly neexistují, vytvoří je.
@@ -86,8 +93,17 @@ class UndirectedGraph:
             dst_id (int): Identifikátor uzlu, do kterého hrana vede.
             weight (float, optional): Ohodnocení hrany. Defaults to 0.
         """
-        # TODO Implementujte metodu dle specifikace
-        pass
+        # // TODO Implementujte metodu dle specifikace
+        src = self.nodes.get(src_id, None)
+        dst = self.nodes.get(dst_id, None)
+
+        if src is None:
+            src = self.create_node(src_id)
+
+        if dst is None:
+            dst = self.create_node(dst_id)
+
+        self.__add_edge(src, dst, weight)
 
 
 # Neměňte signaturu funkce. Dodržte typ návratové hodnoty.
@@ -125,7 +141,9 @@ def load_graph(edge_filepath: str) -> UndirectedGraph:
     return graph
 
 
-def find_solution(graph: UndirectedGraph, start_id: int, end_id: int) -> tuple[dict[int, float], dict[int, int]]:
+def find_solution(
+    graph: UndirectedGraph, start_id: int, end_id: int
+) -> tuple[dict[int, float], dict[int, int]]:
     """
     Args:
         graph (UndirectedGraph): Instance třídy UndirectedGraph - načtená data.
@@ -148,7 +166,9 @@ def find_solution(graph: UndirectedGraph, start_id: int, end_id: int) -> tuple[d
     return distances, predecessors
 
 
-def get_list_of_stations(predecessors: dict[int, int], nodes_metadata: dict[str, int], end_id: int) -> list[str]:
+def get_list_of_stations(
+    predecessors: dict[int, int], nodes_metadata: dict[str, int], end_id: int
+) -> list[str]:
     """Vrátí seznam jmen stanic, které jsou na nejkratší cestě mezi startovní a cílovou stanicí. Projde od cílové stanice zpětné ukazatele v slovníku predecessors až k startovní stanici. Všechna jména stanice (ne průjezdné body) vrátí jako seznam ve správném pořadí.
     Od startovní stanice po cílovou - První prvek seznamu je startovní stanice, poslední prvek je cílová stanice.
 
@@ -160,9 +180,16 @@ def get_list_of_stations(predecessors: dict[int, int], nodes_metadata: dict[str,
     Returns:
         list[str]: seznam jmen zastávek na trase např. : ["Ceske Budejovice hi nadrazni", "Nove Hodejovice", ..., "Bohumilice v Cechach", "Vimperk"]
     """
-    # TODO Implementujte funkci dle specifikace
-
     path: list[str] = list()
+    current_id = end_id
+
+    while current_id in predecessors:
+        node_name = list(nodes_metadata.keys())[
+            list(nodes_metadata.values()).index(current_id)
+        ]
+        path.insert(0, node_name)
+        current_id = predecessors[current_id]
+
     return path
 
 
@@ -194,5 +221,3 @@ if __name__ == "__main__":
     # TODO implementujte zpracování argumentu z příkazové řádky.
     data_path = ""
     main(data_path)
-
-
